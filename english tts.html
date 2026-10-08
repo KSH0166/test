@@ -1,223 +1,242 @@
+```html
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pronunciation App</title>
 
-<title>Text to Speech</title>
-
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #f2f5f9;
-        margin: 0;
-        padding: 40px 20px;
-    }
-
-    .app {
-        max-width: 750px;
-        margin: auto;
-        background: white;
-        padding: 30px;
-        border-radius: 20px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    }
-
-    h1 {
-        text-align: center;
-        margin-bottom: 10px;
-    }
-
-    .description {
-        text-align: center;
-        color: #777;
-        margin-bottom: 25px;
-    }
-
-    textarea {
-        width: 100%;
-        height: 220px;
-        padding: 15px;
-        box-sizing: border-box;
-
-        font-size: 18px;
-        line-height: 1.6;
-
-        border: 2px solid #ddd;
-        border-radius: 12px;
-
-        resize: vertical;
-        outline: none;
-    }
-
-    textarea:focus {
-        border-color: #4d8cff;
-    }
-
-    .buttons {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-        margin-top: 20px;
-    }
-
-    button {
-        padding: 16px 10px;
-        border: none;
-        border-radius: 12px;
-
-        font-size: 16px;
-        font-weight: bold;
-
-        cursor: pointer;
-    }
-
-    button:hover {
-        opacity: 0.8;
-    }
-
-    .american {
-        background: #e5efff;
-        color: #1758b5;
-    }
-
-    .british {
-        background: #eee7ff;
-        color: #633bb5;
-    }
-
-    .korean {
-        background: #e4f7e9;
-        color: #218345;
-    }
-
-    .stop {
-        background: #ffe5e5;
-        color: #c62828;
-        width: 100%;
-        margin-top: 12px;
-    }
-
-    .clear {
-        background: #eeeeee;
-        color: #555;
-        width: 100%;
-        margin-top: 10px;
-    }
-
-    .speed {
-        margin-top: 25px;
-    }
-
-    .speed-title {
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
-
-    .speed-box {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
-    #speed {
-        flex: 1;
-    }
-
-    #speedValue {
-        width: 45px;
-        font-weight: bold;
-    }
-
-    .status {
-        margin-top: 25px;
-        padding: 15px;
-        background: #f5f5f5;
-        border-radius: 10px;
-        text-align: center;
-        color: #555;
-    }
-
-    @media (max-width: 600px) {
-        .buttons {
-            grid-template-columns: 1fr;
+    <style>
+        * {
+            box-sizing: border-box;
         }
 
-        .app {
-            padding: 20px;
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
         }
-    }
-</style>
 
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 230px;
+            padding: 18px;
+            resize: vertical;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            font-size: 18px;
+            line-height: 1.6;
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: #4d8cff;
+        }
+
+        .section-title {
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .language-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            border: none;
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .american {
+            background: #e5efff;
+            color: #1859b5;
+        }
+
+        .british {
+            background: #eee7ff;
+            color: #6238b5;
+        }
+
+        .korean {
+            background: #e5f7eb;
+            color: #218345;
+        }
+
+        .control-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .stop {
+            background: #ffe5e5;
+            color: #c62828;
+        }
+
+        .clear {
+            background: #eeeeee;
+            color: #555;
+        }
+
+        .speed {
+            margin-top: 25px;
+        }
+
+        .speed-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        #speed {
+            flex: 1;
+        }
+
+        #speedValue {
+            width: 45px;
+            font-weight: bold;
+        }
+
+        .status {
+            margin-top: 25px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            text-align: center;
+            color: #555;
+        }
+
+        .voice-info {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 13px;
+            color: #888;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .language-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-
 
 <body>
 
-<div class="app">
+<div class="container">
 
-    <h1>🔊 Text to Speech</h1>
+    <h1>🔊 Pronunciation App</h1>
 
-    <div class="description">
+    <div class="subtitle">
         텍스트를 입력하고 원하는 발음을 선택하세요.
     </div>
 
 
+    <!-- 텍스트 입력 -->
     <textarea
-        id="text"
-        placeholder="영어 또는 한국어를 입력하세요.
+        id="textInput"
+        placeholder="영어 또는 한국어를 자유롭게 입력하세요.
 
 예:
-Hello! How are you today?
+Hello, everyone.
+Welcome to my English class.
 
-안녕하세요! 오늘 기분이 어떠세요?"
+안녕하세요. 오늘 수업에 오신 것을 환영합니다."
     ></textarea>
 
 
-    <div class="buttons">
+    <!-- 언어 선택 -->
+    <div class="section-title">
+        🎧 발음 선택
+    </div>
+
+    <div class="language-buttons">
 
         <button
             class="american"
             onclick="speak('en-US')">
-            🇺🇸 American
+            🇺🇸 American English
         </button>
 
         <button
             class="british"
             onclick="speak('en-GB')">
-            🇬🇧 British
+            🇬🇧 British English
         </button>
 
         <button
             class="korean"
             onclick="speak('ko-KR')">
-            🇰🇷 Korean
+            🇰🇷 한국어
         </button>
 
     </div>
 
 
-    <button
-        class="stop"
-        onclick="stopSpeaking()">
-        ⏹ 정지
-    </button>
+    <!-- 정지 / 지우기 -->
+    <div class="control-buttons">
+
+        <button
+            class="stop"
+            onclick="stopSpeech()">
+            ⏹ 정지
+        </button>
+
+        <button
+            class="clear"
+            onclick="clearText()">
+            🗑 지우기
+        </button>
+
+    </div>
 
 
-    <button
-        class="clear"
-        onclick="clearText()">
-        🗑 텍스트 지우기
-    </button>
-
-
+    <!-- 속도 -->
     <div class="speed">
 
-        <div class="speed-title">
-            🔧 말하기 속도
+        <div class="section-title">
+            ⚙️ 말하기 속도
         </div>
 
-        <div class="speed-box">
+        <div class="speed-row">
 
             <span>느림</span>
 
@@ -233,19 +252,24 @@ Hello! How are you today?
 
             <span>빠름</span>
 
-            <span id="speedValue">
-                1.0x
-            </span>
+            <span id="speedValue">1.0x</span>
 
         </div>
 
     </div>
 
 
+    <!-- 상태 -->
     <div
         class="status"
         id="status">
         텍스트를 입력해주세요.
+    </div>
+
+    <div
+        class="voice-info"
+        id="voiceInfo">
+        브라우저의 음성을 사용합니다.
     </div>
 
 </div>
@@ -253,219 +277,265 @@ Hello! How are you today?
 
 <script>
 
-let voices = [];
+    // =====================================
+    // 브라우저 음성 목록
+    // =====================================
+
+    let voices = [];
 
 
-/* ---------------------------
-   브라우저 음성 목록 가져오기
----------------------------- */
-
-function loadVoices() {
-
-    voices = window.speechSynthesis.getVoices();
-
-}
-
-window.speechSynthesis.onvoiceschanged = loadVoices;
-
-loadVoices();
-
-
-/* ---------------------------
-   원하는 음성 찾기
----------------------------- */
-
-function findVoice(language) {
-
-    // 정확한 언어 찾기
-    let voice = voices.find(function(v) {
-
-        return v.lang.toLowerCase() ===
-               language.toLowerCase();
-
-    });
-
-    if (voice) {
-        return voice;
+    function loadVoices() {
+        voices = speechSynthesis.getVoices();
     }
 
 
-    // 같은 언어 찾기
-    let baseLanguage =
-        language.split("-")[0].toLowerCase();
+    speechSynthesis.onvoiceschanged = loadVoices;
 
-    voice = voices.find(function(v) {
-
-        return v.lang
-            .toLowerCase()
-            .startsWith(baseLanguage);
-
-    });
-
-    return voice;
-}
+    loadVoices();
 
 
-/* ---------------------------
-   텍스트 읽기
----------------------------- */
-
-function speak(language) {
-
-    let text =
-        document.getElementById("text").value.trim();
-
-
-    if (text === "") {
-
-        alert("텍스트를 먼저 입력해주세요.");
-
-        return;
-    }
-
-
-    // 기존 음성 정지
-    window.speechSynthesis.cancel();
-
-
-    // 새로운 음성 생성
-    let speech =
-        new SpeechSynthesisUtterance(text);
-
-
-    // 언어 설정
-    speech.lang = language;
-
-
+    // =====================================
     // 음성 찾기
-    let voice = findVoice(language);
+    // =====================================
+
+    function findVoice(language) {
+
+        // 정확하게 일치하는 음성 찾기
+        let exactVoice = voices.find(function(voice) {
+
+            return voice.lang.toLowerCase() ===
+                   language.toLowerCase();
+
+        });
 
 
-    if (voice) {
+        if (exactVoice) {
+            return exactVoice;
+        }
 
-        speech.voice = voice;
 
+        // 같은 언어의 음성 찾기
+        let baseLanguage =
+            language.split("-")[0].toLowerCase();
+
+
+        return voices.find(function(voice) {
+
+            return voice.lang
+                .toLowerCase()
+                .startsWith(baseLanguage);
+
+        });
     }
 
 
-    // 속도
-    speech.rate =
-        Number(
-            document.getElementById("speed").value
-        );
+    // =====================================
+    // 텍스트 읽기
+    // =====================================
+
+    function speak(language) {
+
+        const text =
+            document
+                .getElementById("textInput")
+                .value
+                .trim();
 
 
-    // 음높이
-    speech.pitch = 1;
+        // 텍스트가 없는 경우
+        if (text === "") {
+
+            alert("텍스트를 먼저 입력해주세요.");
+
+            return;
+        }
 
 
-    // 볼륨
-    speech.volume = 1;
+        // 현재 재생 중인 음성 정지
+        speechSynthesis.cancel();
 
 
-    /* 상태 표시 */
+        // 음성 객체 생성
+        const utterance =
+            new SpeechSynthesisUtterance(text);
 
-    speech.onstart = function() {
 
-        if (language === "en-US") {
+        // 언어 설정
+        utterance.lang = language;
 
-            document.getElementById("status")
+
+        // 해당 언어의 음성 찾기
+        const voice = findVoice(language);
+
+
+        if (voice) {
+
+            utterance.voice = voice;
+
+            document
+                .getElementById("voiceInfo")
                 .innerText =
-                "🇺🇸 American English로 읽는 중...";
+                "사용 중인 음성: " +
+                voice.name +
+                " (" +
+                voice.lang +
+                ")";
 
         }
 
-        else if (language === "en-GB") {
-
-            document.getElementById("status")
-                .innerText =
-                "🇬🇧 British English로 읽는 중...";
-
-        }
 
         else {
 
-            document.getElementById("status")
+            document
+                .getElementById("voiceInfo")
                 .innerText =
-                "🇰🇷 한국어로 읽는 중...";
+                "해당 음성을 찾지 못했습니다. 브라우저 기본 음성을 사용합니다.";
 
         }
 
-    };
+
+        // 속도
+        utterance.rate =
+            Number(
+                document
+                    .getElementById("speed")
+                    .value
+            );
 
 
-    speech.onend = function() {
+        // 기본 음높이
+        utterance.pitch = 1;
 
-        document.getElementById("status")
+
+        // 기본 볼륨
+        utterance.volume = 1;
+
+
+        // =================================
+        // 재생 시작
+        // =================================
+
+        utterance.onstart = function() {
+
+            let message;
+
+
+            if (language === "en-US") {
+
+                message =
+                    "🇺🇸 American English로 읽는 중...";
+
+            }
+
+            else if (language === "en-GB") {
+
+                message =
+                    "🇬🇧 British English로 읽는 중...";
+
+            }
+
+            else {
+
+                message =
+                    "🇰🇷 한국어로 읽는 중...";
+
+            }
+
+
+            document
+                .getElementById("status")
+                .innerText = message;
+
+        };
+
+
+        // =================================
+        // 재생 완료
+        // =================================
+
+        utterance.onend = function() {
+
+            document
+                .getElementById("status")
+                .innerText =
+                "✅ 재생 완료";
+
+        };
+
+
+        // =================================
+        // 오류
+        // =================================
+
+        utterance.onerror = function() {
+
+            document
+                .getElementById("status")
+                .innerText =
+                "❌ 음성 재생에 문제가 발생했습니다.";
+
+        };
+
+
+        // 음성 재생
+        speechSynthesis.speak(utterance);
+    }
+
+
+    // =====================================
+    // 정지
+    // =====================================
+
+    function stopSpeech() {
+
+        speechSynthesis.cancel();
+
+        document
+            .getElementById("status")
             .innerText =
-            "✅ 재생 완료";
+            "⏹ 재생 중지";
+    }
 
-    };
 
+    // =====================================
+    // 텍스트 삭제
+    // =====================================
 
-    speech.onerror = function() {
+    function clearText() {
 
-        document.getElementById("status")
+        speechSynthesis.cancel();
+
+        document
+            .getElementById("textInput")
+            .value = "";
+
+        document
+            .getElementById("status")
             .innerText =
-            "❌ 음성 재생에 문제가 발생했습니다.";
-
-    };
-
-
-    // 음성 재생
-    window.speechSynthesis.speak(speech);
-
-}
+            "텍스트를 입력해주세요.";
+    }
 
 
-/* ---------------------------
-   정지
----------------------------- */
+    // =====================================
+    // 속도 변경
+    // =====================================
 
-function stopSpeaking() {
+    function changeSpeed() {
 
-    window.speechSynthesis.cancel();
-
-    document.getElementById("status")
-        .innerText =
-        "⏹ 재생 중지";
-
-}
+        const speed =
+            document
+                .getElementById("speed")
+                .value;
 
 
-/* ---------------------------
-   텍스트 지우기
----------------------------- */
-
-function clearText() {
-
-    window.speechSynthesis.cancel();
-
-    document.getElementById("text").value = "";
-
-    document.getElementById("status")
-        .innerText =
-        "텍스트를 입력해주세요.";
-
-}
-
-
-/* ---------------------------
-   속도 변경
----------------------------- */
-
-function changeSpeed() {
-
-    let speed =
-        document.getElementById("speed").value;
-
-    document.getElementById("speedValue")
-        .innerText =
-        speed + "x";
-
-}
+        document
+            .getElementById("speedValue")
+            .innerText =
+            speed + "x";
+    }
 
 </script>
 
 </body>
 </html>
+```
